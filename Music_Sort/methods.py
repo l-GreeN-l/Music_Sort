@@ -9,16 +9,15 @@
 #                   dellist - список кандидатов на удаление
 #               move - создает папки vishlist и dellist в директории и распихивает туда файлы кандидатов
 #
-#           !!!!!ЗАПУСКАТЬ!!!!
+#           Запуск:
 #                   через  logic(<путь до папки с музыкой>)
-#                По каталогам бродит с помощью рекурсии logic() !!!!!
+#                По каталогам бродит с помощью рекурсии logic() 
 #                И с помощью терминала через os.chdir(path)
 #
 # ----------------------------------------------------------------------------------------------------------------------
 
 import os
 import shutil
-
 
 
 # Получить список папок
@@ -31,9 +30,6 @@ def get_catalogs(path):
             cataloglist.append(path+'\\'+elem)
 
     return cataloglist
-
-
-
 
  # Получить список файлов
 def get_files():
@@ -55,12 +51,9 @@ def get_files():
     except AssertionError as ass:
         print()
         # print(ass)
-    pass
+    
 
     return filelist
-
-
-
 
 # Проверить - есть ли в каталоге файлы на удаление
 def check(filelist):
@@ -81,19 +74,16 @@ def check(filelist):
                     tr = True
                     delist.append(file.name)
 
-            pass
+            
 
         if tr : vishlist.append(sort_file.name)
-        pass
+        
 
     print(delist)
     print(vishlist)
     for file in filelist:
         file.close()
     return [delist, vishlist]
-
-
-
 
 #  Перемещение файлов в каталог на удаление
 def move(path, list):
@@ -121,21 +111,14 @@ def move(path, list):
         # print(distination)
         for file in delFiles:
             shutil.move(file, distination_del + os.path.basename(file))
-            pass
+            
 
         for file in vishFiles:
             shutil.move(file, distination_vish + os.path.basename(file))
-            pass
-
-    pass
-
-
-
-
+            
 # Логика проверки музыки на похожие файлы
-
 def logic(path):
-
+    
     print('Я нашел в ', path, ' папки :', get_catalogs(os.getcwd()))
     for elem in get_catalogs(os.getcwd()):
         if elem == 'Del_List':
@@ -147,10 +130,7 @@ def logic(path):
             os.chdir(elem)
             logic(elem)
             os.chdir(path)
-        pass
+        
     print('Выполнил логику  - ', os.getcwd())
-
     move(os.getcwd(),check(get_files()))
-
-
-    pass
+ 
