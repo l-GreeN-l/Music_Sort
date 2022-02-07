@@ -28,7 +28,6 @@ def get_catalogs(path):
             continue
         else:
             cataloglist.append(path+'\\'+elem)
-
     return cataloglist
 
  # Получить список файлов
@@ -51,8 +50,6 @@ def get_files():
     except AssertionError as ass:
         print()
         # print(ass)
-    
-
     return filelist
 
 # Проверить - есть ли в каталоге файлы на удаление
@@ -64,7 +61,6 @@ def check(filelist):
         sort_file_name = os.path.basename(sort_file.name).split('.mp3')[0]
         tr = False
         for file in filelist:
-
             # if sort_file != file:
             file_name = os.path.basename(file.name).split('.')[0]
             if sort_file_name != file_name:
@@ -73,12 +69,8 @@ def check(filelist):
                     print('2- ', sort_file_name)
                     tr = True
                     delist.append(file.name)
-
-            
-
-        if tr : vishlist.append(sort_file.name)
-        
-
+                    
+        if tr : vishlist.append(sort_file.name)  
     print(delist)
     print(vishlist)
     for file in filelist:
@@ -95,24 +87,20 @@ def move(path, list):
         distination_vish = path + '\Vish_List\\'
         try:
             os.mkdir(distination_del)
-
-
+            
         except FileExistsError as erF:
             print('DEL директория уже есть')
 
         try:
 
             os.mkdir(distination_vish)
-
         except FileExistsError as erF:
             print('VISH директория уже есть')
-
         # print(path)
         # print(distination)
         for file in delFiles:
             shutil.move(file, distination_del + os.path.basename(file))
             
-
         for file in vishFiles:
             shutil.move(file, distination_vish + os.path.basename(file))
             
